@@ -1,6 +1,6 @@
 const mysql = require('mysql2');
 
-const connection = mysql.createPool({
+const pool = mysql.createPool({
     multipleStatements: true,
     host: process.env.DATABASE_HOST,
     port: process.env.DATABASE_PORT,
@@ -14,9 +14,9 @@ const connection = mysql.createPool({
     queueLimit: 0
 });
 
-connection.connect(function (err) {
+pool.getConnection(function (err) {
     if (err) return console.log(err);
     console.log('conectou');
 });
 
-module.exports = connection;
+module.exports = pool;
