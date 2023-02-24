@@ -23,8 +23,8 @@ module.exports = {
 
         res.header('Access-Control-Expose-Headers', 'agreementrequired');
 
-        next();
-        
+       
+
         let dataForm = JSON.parse(req.body.formAgent);
         const photo = req.files[0]?.filename ? `${process.env.BASE_URL}/uploads/agents/${req.files[0]?.filename}` : '';
         const name = dataForm.name;
@@ -96,6 +96,7 @@ module.exports = {
             }
 
         });
+        next();
     },
 
     updateAgent(req, res) {
