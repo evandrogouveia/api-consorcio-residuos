@@ -9,11 +9,6 @@ dotenv.config();
 
 app.use(cors({
     origin: '*',
-    allowedHeaders: [
-        'Access-Control-Allow-Origin: https://projeto-camara.vercel.app',
-        'Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE',
-        'Access-Control-Allow-Headers: *'
-    ]
 }));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
 app.use(bodyParser.json({limit: '50mb'}));
