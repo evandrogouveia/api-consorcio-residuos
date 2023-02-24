@@ -1,6 +1,8 @@
 const connection = require('../database/connection');
 const multer = require('multer');
 let fs = require('fs-extra');
+const AWS = require("aws-sdk");
+const s3 = new AWS.S3()
 
 module.exports = {
     storage: multer.diskStorage({
@@ -16,7 +18,7 @@ module.exports = {
         }
     }),
 
-    newAgent(req, res) {
+    async newAgent(req, res) {
         let dataForm = JSON.parse(req.body.formAgent);
         const photo = req.files[0]?.filename ? `${process.env.BASE_URL}/uploads/agents/${req.files[0]?.filename}` : '';
         const name = dataForm.name;
@@ -34,6 +36,24 @@ module.exports = {
         const biography = dataForm.biography || '';
         const address = dataForm.address || '';
         const bankDetails = dataForm.bankDetails || '';
+
+        try {
+            let s3File = await s3.getObject({
+              Bucket: 'cyclic-ruby-goldfish-robe-sa-east-1',
+              Key: req.files[0]?.filename,
+            }).promise()
+        
+            res.set('Content-type', s3File.ContentType)
+            res.send(s3File.Body.toString()).end()
+          } catch (error) {
+            if (error.code === 'NoSuchKey') {
+              console.log(`No such key ${req.files[0]?.filename}`)
+              res.sendStatus(404).end()
+            } else {
+              console.log(error)
+              res.sendStatus(500).end()
+            }
+          }
 
         const checkAgentExistis = `SELECT name FROM agents WHERE name = ?`;
 
