@@ -17,6 +17,14 @@ module.exports = {
     }),
 
     newAgent(req, res) {
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        res.header("Access-Control-Allow-Credentials", true);
+        res.header("Access-Control-Allow-Origin", "https://projeto-camara.vercel.app/");
+
+        res.header('Access-Control-Expose-Headers', 'agreementrequired');
+
+        next();
+        
         let dataForm = JSON.parse(req.body.formAgent);
         const photo = req.files[0]?.filename ? `${process.env.BASE_URL}/uploads/agents/${req.files[0]?.filename}` : '';
         const name = dataForm.name;
@@ -111,22 +119,22 @@ module.exports = {
         const bankDetails = dataForm.bankDetails || '';
 
         const updateAgent = 'UPDATE `agents` SET `photo`= ?,' +
-        '`name`= ?,' +
-        '`cognam`= ?,' +
-        '`birthDate`= ?,' +
-        '`email`= ?,' +
-        '`cpf`= ?,' +
-        '`role`= ?,' +
-        '`phone`= ?,' +
-        '`identityNumber`= ?,' +
-        '`identityOrgan`= ?,' +
-        '`identityUf`= ?,' +
-        '`issuanceDate`= ?,' +
-        '`naturalness`= ?,' +
-        '`biography`= ?,' +
-        '`address`= ?,' +
-        '`bankDetails`= ?' +
-        'WHERE `agents`.`ID`= ?';
+            '`name`= ?,' +
+            '`cognam`= ?,' +
+            '`birthDate`= ?,' +
+            '`email`= ?,' +
+            '`cpf`= ?,' +
+            '`role`= ?,' +
+            '`phone`= ?,' +
+            '`identityNumber`= ?,' +
+            '`identityOrgan`= ?,' +
+            '`identityUf`= ?,' +
+            '`issuanceDate`= ?,' +
+            '`naturalness`= ?,' +
+            '`biography`= ?,' +
+            '`address`= ?,' +
+            '`bankDetails`= ?' +
+            'WHERE `agents`.`ID`= ?';
 
         connection.query(updateAgent, [
             photo,
@@ -160,7 +168,7 @@ module.exports = {
 
         connection.query(selectAgents, [], function (error, results, fields) {
             if (error) {
-                res.status(400).json({status: 0, message: 'Erro ao obter agentes', error: error});
+                res.status(400).json({ status: 0, message: 'Erro ao obter agentes', error: error });
             } else {
                 res.status(200).json(results);
             }
@@ -174,7 +182,7 @@ module.exports = {
 
         connection.query(deleteAgent, [id], function (error, results, fields) {
             if (error) {
-                res.status(400).json({status: 0, message: 'Erro ao excluir agente', error: error});
+                res.status(400).json({ status: 0, message: 'Erro ao excluir agente', error: error });
             } else {
                 res.status(200).json(results);
             }
