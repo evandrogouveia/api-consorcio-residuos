@@ -4,6 +4,11 @@ const multer = require('multer');
 const newsCategoryController = require('../controllers/newsCategoryController');
 const newsController = require('../controllers/newsController');
 const router = require('express').Router();
+var cors = require('cors');
+router.use(cors({
+    origin: ['*', 'https://projeto-camara.vercel.app/'],
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}));
 
 router.get('/', (req, res) => res.json({ message: 'Funcionando!' }));
 
@@ -20,7 +25,7 @@ router.delete('/delete-role/:id', rolesController.deleteRole);
 
 /*--------------------------- ROTAS DE AGENTES ---------------------------*/
 //adiciona um novo agente
-router.post('/new-agent', multer(agentsController).array('file'), agentsController.newAgent);
+router.post('/new-agent', cors(), multer(agentsController).array('file'), agentsController.newAgent);
 //obtem todos os agentes
 router.get('/all-agents', agentsController.getAgents);
 //atualiza o agente
