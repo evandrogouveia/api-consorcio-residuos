@@ -7,7 +7,10 @@ const dotenv = require('dotenv');
 var cors = require('cors');
 dotenv.config();
 
-app.use(cors({origin: "*"}));
+app.use(cors({
+    origin: "*",
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(cookieParser());
@@ -16,7 +19,7 @@ const router = require('./src/routes');
 app.use(router);
 app.use('/uploads', express.static('uploads'));
 
-app.use('/', router);
+app.use('/', cors(), router);
 
 app.listen(port);
 console.log('API funcionando!');
