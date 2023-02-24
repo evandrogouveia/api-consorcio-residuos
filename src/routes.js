@@ -11,7 +11,7 @@ router.use(cors({
     allowedHeaders: [
         'Access-Control-Allow-Origin: https://projeto-camara.vercel.app',
         'Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE',
-        'Access-Control-Allow-Headers: Content-Type, x-requested-with'
+        'Access-Control-Allow-Headers: *'
     ]
 }));
 
