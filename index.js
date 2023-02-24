@@ -7,14 +7,7 @@ const dotenv = require('dotenv');
 var cors = require('cors');
 dotenv.config();
 
-app.use(cors({
-    origin: '*',
-    allowedHeaders: [
-        'Access-Control-Allow-Origin: *',
-        'Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE',
-        'Access-Control-Allow-Headers: *'
-    ]
-}));
+app.use(cors());
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(cookieParser());
