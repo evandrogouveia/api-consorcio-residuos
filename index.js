@@ -8,7 +8,8 @@ var cors = require('cors');
 dotenv.config();
 const allowedOrigins = [
     'http://localhost:4200',
-    'https://api-camara.vercel.app'
+    'https://api-camara.vercel.app',
+    'https://projeto-camara.vercel.app/'
 ];
 
 const corsOptions = {
