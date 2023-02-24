@@ -17,14 +17,6 @@ module.exports = {
     }),
 
     newAgent(req, res) {
-        res.header('Access-Control-Allow-Methods', 'GET,PUT,PATCH,POST,DELETE');
-        res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
-
-        // Allows only request from http://mydomain.com
-        res.header('Access-Control-Allow-Origin', 'https://projeto-camara.vercel.app');
-
-
-
         let dataForm = JSON.parse(req.body.formAgent);
         const photo = req.files[0]?.filename ? `${process.env.BASE_URL}/uploads/agents/${req.files[0]?.filename}` : '';
         const name = dataForm.name;
@@ -96,7 +88,6 @@ module.exports = {
             }
 
         });
-        next();
     },
 
     updateAgent(req, res) {
