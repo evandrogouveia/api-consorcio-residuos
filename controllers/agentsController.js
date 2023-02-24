@@ -18,6 +18,7 @@ module.exports = {
 
     newAgent(req, res) {
         res.setHeader('Content-Type', 'image/*');
+        res.setHeader('Access-Control-Allow-Origin', '*');
         let dataForm = JSON.parse(req.body.formAgent);
         const photo = req.files[0]?.filename ? `${process.env.BASE_URL}/uploads/agents/${req.files[0]?.filename}` : '';
         const name = dataForm.name;

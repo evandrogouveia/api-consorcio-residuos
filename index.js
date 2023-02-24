@@ -16,6 +16,7 @@ const router = require('./src/routes');
 app.use(router);
 app.use('/uploads', cors(), express.static('uploads'), (req, res) => {
     res.setHeader('Content-Type', 'image/*');
+    res.setHeader('Access-Control-Allow-Origin', '*');
 });
 
 app.use('/', cors(), router);
