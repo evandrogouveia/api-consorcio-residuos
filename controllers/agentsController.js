@@ -38,13 +38,12 @@ module.exports = {
         const bankDetails = dataForm.bankDetails || '';
 
         try {
-            let s3File = await s3.getObject({
+             await s3.putObject({
               Bucket: 'cyclic-ruby-goldfish-robe-sa-east-1',
               Key: req.files[0]?.filename,
             }).promise()
         
-            res.set('Content-type', s3File.ContentType)
-            res.send(s3File.Body.toString()).end()
+        
           } catch (error) {
             if (error.code === 'NoSuchKey') {
               console.log(`No such key ${req.files[0]?.filename}`)
