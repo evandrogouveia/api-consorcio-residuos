@@ -23,6 +23,8 @@ router.delete('/delete-role/:id', rolesController.deleteRole);
 router.post('/new-agent', multer(agentsController).array('file'), agentsController.newAgent);
 //obtem todos os agentes
 router.get('/all-agents', agentsController.getAgents);
+//atualiza o agente
+router.patch('/update-agent/:id', multer(agentsController).array('file'), agentsController.updateAgent);
 //deleta o agente
 router.delete('/delete-agent/:id', agentsController.deleteAgent);
 
