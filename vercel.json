@@ -23,7 +23,7 @@
         ]
       },
       {
-        "source": "https://projeto-camara.vercel.app/(.*)",
+        "source": "https://api-camara.vercel.app/(.*)",
         "headers": [
           { "key": "Access-Control-Allow-Credentials", "value": "true" },
           { "key": "Access-Control-Allow-Origin", "value": "*" },
