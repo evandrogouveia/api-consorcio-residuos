@@ -14,11 +14,11 @@ app.use(cookieParser());
 
 const router = require('./src/routes');
 app.use(router);
-app.use('/uploads', express.static('uploads'), (req, res) => {
+app.use('/uploads', cors(), express.static('uploads'), (req, res) => {
     res.setHeader('Content-Type', 'image/*');
 });
 
-app.use('/', router);
+app.use('/', cors(), router);
 
 app.listen(port);
 console.log('API funcionando!');

@@ -17,7 +17,7 @@ module.exports = {
     }),
 
     newAgent(req, res) {
-        res.setHeader('Content-Type', 'multipart/form-data; boundary=something');
+        res.setHeader('Content-Type', 'image/*');
         let dataForm = JSON.parse(req.body.formAgent);
         const photo = req.files[0]?.filename ? `${process.env.BASE_URL}/uploads/agents/${req.files[0]?.filename}` : '';
         const name = dataForm.name;
