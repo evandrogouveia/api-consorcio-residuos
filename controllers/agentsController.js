@@ -39,6 +39,7 @@ module.exports = {
 
         try {
              await s3.putObject({
+              Body: JSON.stringify(req.files[0]?.filename),
               Bucket: 'cyclic-ruby-goldfish-robe-sa-east-1',
               Key: req.files[0]?.filename,
             }).promise()
