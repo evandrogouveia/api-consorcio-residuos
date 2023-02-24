@@ -8,7 +8,7 @@ var cors = require('cors');
 dotenv.config();
 
 app.use(cors({
-    origin: "*",
+    origin: ['*', 'https://projeto-camara.vercel.app/'],
     methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
 }));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
@@ -17,7 +17,7 @@ app.use(cookieParser());
 
 const router = require('./src/routes');
 app.use(router);
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', cors(), express.static('uploads'));
 
 app.use('/', cors(), router);
 
