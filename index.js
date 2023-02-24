@@ -10,7 +10,7 @@ dotenv.config();
 app.use(cors({
     origin: '*',
     allowedHeaders: [
-        'Access-Control-Allow-Origin: https://api-camara.vercel.app',
+        'Access-Control-Allow-Origin: *',
         'Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE',
         'Access-Control-Allow-Headers: *'
     ]

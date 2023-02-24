@@ -6,21 +6,14 @@ const newsController = require('../controllers/newsController');
 const router = require('express').Router();
 var cors = require('cors');
 
-const allowedOrigins = [
-    'http://localhost:4200',
-    'https://api-camara.vercel.app',
-    'https://projeto-camara.vercel.app/'
-];
-
-const corsOptions = {
-    origin: (origin, callback) => {
-        if (allowedOrigins.includes(origin) || !origin) {
-            callback(null, true);
-        } else {
-            callback(new Error('Origin not allowed by CORS'));
-        }
-    },
-};
+router.use(cors({
+    origin: '*',
+    allowedHeaders: [
+        'Access-Control-Allow-Origin: *',
+        'Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE',
+        'Access-Control-Allow-Headers: *'
+    ]
+}));
 
 router.get('/', (req, res) => res.json({ message: 'Funcionando!' }));
 
@@ -37,7 +30,7 @@ router.delete('/delete-role/:id', rolesController.deleteRole);
 
 /*--------------------------- ROTAS DE AGENTES ---------------------------*/
 //adiciona um novo agente
-router.post('/new-agent', cors(corsOptions), multer(agentsController).array('file'), agentsController.newAgent);
+router.post('/new-agent', cors(), multer(agentsController).array('file'), agentsController.newAgent);
 //obtem todos os agentes
 router.get('/all-agents', agentsController.getAgents);
 //atualiza o agente
