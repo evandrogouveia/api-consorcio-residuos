@@ -7,7 +7,12 @@ const router = require('express').Router();
 var cors = require('cors');
 router.use(cors({
     origin: ['*', 'https://projeto-camara.vercel.app/'],
-    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+    methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'],
+    allowedHeaders: [
+        'Access-Control-Allow-Origin: https://projeto-camara.vercel.app',
+        'Access-Control-Allow-Methods: POST, GET, OPTIONS, DELETE',
+        'Access-Control-Allow-Headers: Content-Type, x-requested-with'
+    ]
 }));
 
 router.get('/', (req, res) => res.json({ message: 'Funcionando!' }));
