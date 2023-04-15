@@ -3,7 +3,6 @@ const multer = require('multer');
 const headerController = require('../controllers/header/headerController');
 const homeController = require('../controllers/home/homeController');
 const matterController = require('../controllers/matter/matterController');
-const matterControllet = require('../controllers/matter/matterController');
 const proceduresController = require('../controllers/matter/proceduresController');
 const sessionController = require('../controllers/matter/sessionController');
 const typeAmendmentController = require('../controllers/matter/typeAmendmentController');
@@ -25,6 +24,10 @@ const lrfController = require('../controllers/publications-ordinances-daily/lrfC
 const transparencyController = require('../controllers/transparencyController');
 const videosController = require('../controllers/videos/videosController');
 const router = require('express').Router();
+const bodyParser = require('body-parser')
+
+let json = bodyParser.json({limit: '250mb'});
+let urlEncoded = bodyParser.urlencoded({limit: '250mb', extended: true });
 
 router.get('/', (req, res) => res.json({ message: 'Funcionando!' }));
 
@@ -61,7 +64,7 @@ router.delete('/delete-category/:id', newsCategoryController.deleteCategory);
 
 /*--------------------------- ROTAS DE NOTÍCIAS ---------------------------*/
 //adiciona uma nova noticia
-router.post('/new-news', multer(newsController).array('file'), newsController.newNews);
+router.post('/new-news', multer(newsController).array('file'), json, urlEncoded, newsController.newNews);
 //obtem todos as noticias
 router.get('/all-news', newsController.getNews);
 //atualiza a noticia

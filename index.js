@@ -9,7 +9,6 @@ dotenv.config();
 
 app.use(cors({origin: '*'}));
 app.use(bodyParser.json({limit: '250mb'}));
-app.use(bodyParser.raw({limit: '250mb'}));
 app.use(bodyParser.urlencoded({limit: '250mb', extended: true }));
 app.use(cookieParser());
 
