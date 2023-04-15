@@ -8,8 +8,8 @@ var cors = require('cors');
 dotenv.config();
 
 app.use(cors({origin: '*'}));
-app.use(bodyParser.urlencoded({limit: '50mb', extended: true }));
-app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '250mb', extended: true }));
+app.use(bodyParser.json({limit: '250mb'}));
 app.use(cookieParser());
 
 const router = require('./src/routes');
