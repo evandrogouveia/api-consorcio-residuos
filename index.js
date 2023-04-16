@@ -23,7 +23,7 @@ app.use(router);
 
 app.use('/uploads', express.static('uploads'));
 
-app.use('/', router);
+app.use('/api-camara/', router);
 //app.use('/', cors(), router);
 
 app.listen(port);
