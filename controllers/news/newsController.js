@@ -4,10 +4,7 @@ let fs = require('fs-extra');
 
 module.exports = {
     storage: multer.diskStorage({
-        
         destination: function (req, file, cb) {
-            req.setTimeout(0);
-            next();
             let path = `./uploads/news`;
             if (!fs.existsSync(path)) {
                 fs.mkdirSync(path); //gera o diretório automaticamente
@@ -21,6 +18,8 @@ module.exports = {
 
     //cadastra uma nova notícia
     newNews(req, res) {
+        req.setTimeout(0);
+        next();
         let dataForm = JSON.parse(req.body.formNews);
         const title = dataForm.title;
         const subtitle = dataForm.subtitle || '';
