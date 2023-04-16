@@ -18,8 +18,6 @@ module.exports = {
 
     //cadastra uma nova notícia
     newNews(req, res) {
-        req.setTimeout(ms('35m')); // using `ms` package
-        next();
         let dataForm = JSON.parse(req.body.formNews);
         const title = dataForm.title;
         const subtitle = dataForm.subtitle || '';
