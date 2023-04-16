@@ -11,10 +11,6 @@ module.exports = {
             }
             cb(null, path);
         },
-        limits: {
-            fieldNameSize: 300,
-            fileSize: 1048576, // 10 Mb
-        },
         filename: function (req, files, cb) {
             cb(null, `${Date.now()}-${files.originalname}`);
         }
