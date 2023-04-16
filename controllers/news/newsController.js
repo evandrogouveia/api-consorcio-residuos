@@ -12,7 +12,7 @@ module.exports = {
             cb(null, path);
         },
         filename: function (req, files, cb) {
-            cb(null, `${Date.now()}-${files.originalname.toString()}`);
+            cb(null, `${Date.now().toString()}-${files.originalname.toString()}`);
         }
     }),
 
