@@ -14,8 +14,8 @@ app.use(cors({
     "optionsSuccessStatus": 204,
     credentials: true
 }));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(bodyParser.json({ limit: '250mb' }));
+app.use(bodyParser.urlencoded({ limit: '250mb', extended: true }));
 app.use(cookieParser());
 
 const router = require('./src/routes');
@@ -23,7 +23,7 @@ app.use(router);
 
 app.use('/uploads', express.static('uploads'));
 
-app.use('/api-camara/', router);
+app.use('/', router);
 //app.use('/', cors(), router);
 
 app.listen(port);
