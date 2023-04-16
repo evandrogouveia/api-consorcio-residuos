@@ -16,8 +16,17 @@ module.exports = {
         }
     }),
 
+   
+   
+
     //cadastra uma nova notícia
     newNews(req, res) {
+
+        const uploadSingleImage = this.storage.array('file');
+        uploadSingleImage(req, res, function (err) {
+            console.log('ERRO MULTER', err)
+        });
+
 
         let dataForm = JSON.parse(req.body.formNews);
         const title = dataForm.title;

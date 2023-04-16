@@ -60,13 +60,7 @@ router.delete('/delete-category/:id', newsCategoryController.deleteCategory);
 
 /*--------------------------- ROTAS DE NOTÍCIAS ---------------------------*/
 //adiciona uma nova noticia
-router.post('/new-news', multer({
-    storage: newsController.storage,
-    limits: {
-        fieldNameSize: 300,
-        fileSize: 1048576, // 10 Mb
-    }
-}).array('file'), newsController.newNews);
+router.post('/new-news', multer(newsController).array('file'), newsController.newNews);
 //obtem todos as noticias
 router.get('/all-news', newsController.getNews);
 //atualiza a noticia
@@ -213,31 +207,31 @@ router.delete('/delete-procedure/:id', proceduresController.deleteProcedure);
 /*--------------------------- ROTAS DO HEADER ---------------------------*/
 //cadastra o header
 router.post('/register-header', multer(headerController).fields([
-    { name: 'logo' },
-    { name: 'background' },
+    {name: 'logo'},
+    {name: 'background'},
 ]), headerController.registerHeader);
 //obtem dados do header
 router.get('/header', headerController.geHeader);
 //atualiza o header
 router.patch('/update-header/:id', multer(headerController).fields([
-    { name: 'logo' },
-    { name: 'background' },
+    {name: 'logo'},
+    {name: 'background'},
 ]), headerController.updateHeader);
 
 /*--------------------------- ROTAS DA HOME ---------------------------*/
 //cadastra a home
 router.post('/register-home', multer(homeController).fields([
-    { name: 'banner1' },
-    { name: 'banner2' },
-    { name: 'banner3' }
+    {name: 'banner1'},
+    {name: 'banner2'},
+    {name: 'banner3'}
 ]), homeController.registerHome);
 //obtem dados da home
 router.get('/home', homeController.getHome);
 //atualiza a home
 router.patch('/update-home/:id', multer(homeController).fields([
-    { name: 'banner1' },
-    { name: 'banner2' },
-    { name: 'banner3' }
+    {name: 'banner1'},
+    {name: 'banner2'},
+    {name: 'banner3'}
 ]), homeController.updateHome);
 
 /*--------------------------- ROTAS DE VÌDEOS ---------------------------*/
@@ -252,7 +246,7 @@ router.delete('/delete-video/:id', videosController.deleteVideo);
 
 /*--------------------------- ROTAS DE LRF ---------------------------*/
 //adiciona uma nova LRF
-router.post('/new-lrf', multer(lrfController).array('file'), lrfController.newLrf);
+router.post('/new-lrf',  multer(lrfController).array('file'), lrfController.newLrf);
 //obtem todas as LRF
 router.get('/all-lrf', lrfController.getAllLrf);
 //atualiza a LRF
@@ -262,7 +256,7 @@ router.delete('/delete-lrf/:id', lrfController.deleteLrf);
 
 /*--------------------------- ROTAS DE LEIS ---------------------------*/
 //adiciona uma nova LEI
-router.post('/new-lei', multer(leisController).array('file'), leisController.newLei);
+router.post('/new-lei',  multer(leisController).array('file'), leisController.newLei);
 //obtem todas as LEI
 router.get('/all-leis', leisController.getAllLeis);
 //atualiza a LEI
