@@ -24,10 +24,6 @@ const lrfController = require('../controllers/publications-ordinances-daily/lrfC
 const transparencyController = require('../controllers/transparencyController');
 const videosController = require('../controllers/videos/videosController');
 const router = require('express').Router();
-const bodyParser = require('body-parser')
-
-let json = bodyParser.json({limit: '250mb'});
-let urlEncoded = bodyParser.urlencoded({limit: '250mb', extended: true });
 
 router.get('/', (req, res) => res.json({ message: 'Funcionando!' }));
 
@@ -64,7 +60,7 @@ router.delete('/delete-category/:id', newsCategoryController.deleteCategory);
 
 /*--------------------------- ROTAS DE NOTÍCIAS ---------------------------*/
 //adiciona uma nova noticia
-router.post('/new-news', multer(newsController).array('file'), json, urlEncoded, newsController.newNews);
+router.post('/new-news', multer(newsController).array('file'), newsController.newNews);
 //obtem todos as noticias
 router.get('/all-news', newsController.getNews);
 //atualiza a noticia
