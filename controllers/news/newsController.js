@@ -12,7 +12,7 @@ module.exports = {
             cb(null, path);
         },
         filename: function (req, files, cb) {
-            cb(null, `${Date.now()}-${files.originalname}`);
+            cb(null, `6565-${files.originalname}`);
         }
     }),
 
@@ -21,7 +21,7 @@ module.exports = {
         let dataForm = JSON.parse(req.body.formNews);
         const title = dataForm.title;
         const subtitle = dataForm.subtitle || '';
-        const highlightedImage = req.files[0]?.filename ? `${process.env.BASE_URL}/uploads/news/${req.files[0]?.filename.toString()}` : '';
+        const highlightedImage = req.files[0]?.filename ? `${process.env.BASE_URL}/uploads/news/${req.files[0]?.filename}` : '';
         const description = dataForm.description || '';
         const categories = dataForm.categories || '';
         const publicationDate = dataForm.publicationDate || '';
