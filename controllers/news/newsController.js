@@ -11,6 +11,10 @@ module.exports = {
             }
             cb(null, path);
         },
+        limits: {
+            fieldNameSize: 300,
+            fileSize: 1048576, // 10 Mb
+        },
         filename: function (req, files, cb) {
             cb(null, `${Date.now()}-${files.originalname}`);
         }
@@ -18,8 +22,7 @@ module.exports = {
 
     //cadastra uma nova notícia
     newNews(req, res) {
-        req.setTimeout(10000);
-        next();
+
         let dataForm = JSON.parse(req.body.formNews);
         const title = dataForm.title;
         const subtitle = dataForm.subtitle || '';
