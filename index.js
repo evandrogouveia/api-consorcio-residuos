@@ -14,24 +14,14 @@ app.use(cors({
     "optionsSuccessStatus": 204,
     credentials: true
 }));
-app.use(bodyParser.json({ limit: '250mb' }));
-app.use(bodyParser.urlencoded({ limit: '250mb', extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 
 const router = require('./src/routes');
 app.use(router);
-const options = {
-    dotfiles: 'ignore',
-    etag: false,
-    extensions: ['htm', 'html'],
-    index: false,
-    maxAge: '1d',
-    redirect: false,
-    setHeaders (res, path, stat) {
-      res.set('x-timestamp', Date.now())
-    }
-  }
-app.use('/uploads', cors(), express.static('uploads', options));
+
+app.use('/uploads', cors(), express.static('uploads'));
 
 app.use('/api-camara/', cors(), router);
 //app.use('/', cors(), router);
