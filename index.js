@@ -7,14 +7,15 @@ const dotenv = require('dotenv');
 var cors = require('cors');
 dotenv.config();
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");    
-    next();
-});
-app.use(cors({origin: '*'}));
-app.use(bodyParser.json({limit: '250mb'}));
-app.use(bodyParser.urlencoded({limit: '250mb', extended: true }));
+app.use(cors({
+    origin: ['https://cesistemaslegislativo.com.br'],
+    "methods": "GET,PUT,PATCH,POST,DELETE",
+    "preflightContinue": false,
+    "optionsSuccessStatus": 204,
+    credentials: true
+}));
+app.use(bodyParser.json({ limit: '250mb' }));
+app.use(bodyParser.urlencoded({ limit: '250mb', extended: true }));
 app.use(cookieParser());
 
 const router = require('./src/routes');
