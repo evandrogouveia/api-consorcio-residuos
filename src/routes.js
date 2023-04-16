@@ -61,12 +61,12 @@ router.delete('/delete-category/:id', newsCategoryController.deleteCategory);
 /*--------------------------- ROTAS DE NOTÍCIAS ---------------------------*/
 //adiciona uma nova noticia
 router.post('/new-news', multer({
-    storage: newsController,
+    storage: newsController.storage,
     limits: {
         fieldNameSize: 300,
         fileSize: 1048576, // 10 Mb
     }
-}).single('file'), newsController.newNews);
+}).array('file'), newsController.newNews);
 //obtem todos as noticias
 router.get('/all-news', newsController.getNews);
 //atualiza a noticia
