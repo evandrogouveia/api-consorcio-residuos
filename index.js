@@ -15,8 +15,8 @@ app.use(cors({
     credentials: true
 }));
 
-app.use(bodyParser.json({ limit: '250mb' }));
-//app.use(bodyParser.urlencoded({ limit: '250mb', extended: true }));
+//app.use(bodyParser.json({ limit: '250mb' }));
+app.use(bodyParser.urlencoded({ limit: '250mb', extended: true }));
 //app.use(cookieParser());
 
 const router = require('./src/routes');
