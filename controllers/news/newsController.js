@@ -12,8 +12,7 @@ module.exports = {
             cb(null, path);
         },
         filename: function (req, files, cb) {
-            let data = `${Date.now()}-${files.originalname}`;
-            cb(null, JSON.stringify(data));
+            cb(null, `${Date.now()}-${files.originalname}`);
         }
     }),
 
