@@ -14,7 +14,7 @@ app.use(cors({
     "optionsSuccessStatus": 204,
     credentials: true
 }));
-app.use(bodyParser);
+
 app.use(bodyParser.json({ limit: '250mb' }));
 app.use(bodyParser.urlencoded({ limit: '250mb', extended: true }));
 app.use(cookieParser());
