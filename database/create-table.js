@@ -474,7 +474,16 @@ function createTable(conn) {
         ");";
 
 
-    conn.query(sqlProgress, function (error, results, fields) {
+    /* CRIAR TABELA DE USUÁRIOS (CONSORCIO) */
+    const sqlUsersConsorcio = "CREATE TABLE IF NOT EXISTS users_consorcio (\n" +
+        "ID int NOT NULL AUTO_INCREMENT,\n" +
+        "email varchar(50),\n" +
+        "senha varchar(150),\n" +
+        "PRIMARY KEY (ID)\n" +
+        ");";
+
+
+    conn.query(sqlUsersConsorcio, function (error, results, fields) {
         if (error) return console.log(error);
         console.log('criou a tabela');
         pool.end();

@@ -1,5 +1,6 @@
 
 const multer = require('multer');
+const authController = require('../controllers/consorcio/authController');
 const atasController = require('../controllers/consorcio/institucional/atasController');
 const consorcioController = require('../controllers/consorcio/institucional/consorcioController');
 const contratosRateioController = require('../controllers/consorcio/institucional/contratosRateioController');
@@ -12,6 +13,7 @@ const polosController = require('../controllers/consorcio/polosController');
 const categoriesPsController = require('../controllers/consorcio/processo-seletivo/categoriesPsController');
 const processoSeletivoController = require('../controllers/consorcio/processo-seletivo/processoSeletivoController');
 const transparencyConsorcioController = require('../controllers/consorcio/transparencyConsorcioController');
+const userController = require('../controllers/consorcio/userController');
 const headerController = require('../controllers/header/headerController');
 const homeController = require('../controllers/home/homeController');
 const matterController = require('../controllers/matter/matterController');
@@ -387,5 +389,17 @@ router.delete('/delete-licitacao/:id', licitacoesController.deleteLicitacao);
 router.post('/new-progress', andamentoController.newProgress);
 //obtem dados do andamento
 router.get('/all-progress', andamentoController.getProgress);
+
+/*--------------------------- (CONSORCIO) -  ROTAS DE USUÁRIO ---------------------------*/
+//adiciona um novo usuário
+router.post('/register', userController.register);
+//login do usuário
+router.post('/login', userController.login);
+//obtem o usuário autenticado
+router.get('/user', authController.verifyToken, userController.getUser);
+//obtem todos os usuários
+router.get('/user-all', userController.getUserAll);
+//fazer logout
+router.post('/logout', userController.logout);
 
 module.exports = router;
