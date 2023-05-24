@@ -60,8 +60,8 @@ module.exports = {
         let logo;
         let background;
       
-        req.files.logo ? logo = `${process.env.BASE_URL}/uploads/header/${req.files.logo[0]?.filename}` : logo = dataForm.logo;
-        req.files.background ? background = `${process.env.BASE_URL}/uploads/header/${req.files.background[0]?.filename}` : background = dataForm.background;
+        req.files.logo ? logo = `${process.env.BASE_URL}/api-consorcio/uploads/header/${req.files.logo[0]?.filename}` : logo = dataForm.logo;
+        req.files.background ? background = `${process.env.BASE_URL}/api-consorcio/uploads/header/${req.files.background[0]?.filename}` : background = dataForm.background;
 
         const updateHeader = 'UPDATE `header` SET `logo`= ?,' +
             '`background`= ?' +
