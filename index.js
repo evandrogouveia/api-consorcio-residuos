@@ -16,7 +16,7 @@ app.use(cookieParser());
 const router = require('./src/routes');
 app.use(router);
 
-app.use('/uploads', express.static('uploads'));
+app.use('/api-consorcio/uploads', express.static('uploads'));
 
 app.use('/api-consorcio/', router);
 //app.use('/', cors(), router);
