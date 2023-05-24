@@ -25,7 +25,7 @@ module.exports = {
         const date = dataForm.date || '';
         const exercise = dataForm.exercise || '';
         const secretary = dataForm.secretary || '';
-        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/uploads/processo_seletivo/${req.files[0]?.filename}` : '';
+        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/processo_seletivo/${req.files[0]?.filename}` : '';
         const description = dataForm.description || '';
 
         const newProcessoSeletivo = `INSERT INTO processoseletivo(
@@ -76,7 +76,7 @@ module.exports = {
         const date = dataForm.date || '';
         const exercise = dataForm.exercise || '';
         const secretary = dataForm.secretary || '';
-        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/uploads/processo_seletivo/${req.files[0]?.filename}` : dataForm.file;
+        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/processo_seletivo/${req.files[0]?.filename}` : dataForm.file;
         const description = dataForm.description || '';
 
         const updateProcessoSeletivo = 'UPDATE `processoseletivo` SET `typeFile`= ?,' +

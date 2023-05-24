@@ -18,7 +18,7 @@ module.exports = {
 
     newCounty(req, res) {
         let dataForm = JSON.parse(req.body.formMunicipio);
-        const arms = req.files[0]?.filename ? `${process.env.BASE_URL}/uploads/brasoes/${req.files[0]?.filename}` : '';
+        const arms = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/brasoes/${req.files[0]?.filename}` : '';
         const name = dataForm.name || '';
         const foundation = dataForm.foundation || '';
         const politicalEmancipation = dataForm.politicalEmancipation || '';
@@ -88,7 +88,7 @@ module.exports = {
         const id = parseInt(req.params.id);
         let dataForm = JSON.parse(req.body.formMunicipio);
        
-        const arms = req.files[0]?.filename ? `${process.env.BASE_URL}/uploads/brasoes/${req.files[0]?.filename}` : dataForm.arms;
+        const arms = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/brasoes/${req.files[0]?.filename}` : dataForm.arms;
         const name = dataForm.name;
         const foundation = dataForm.foundation || '';
         const politicalEmancipation = dataForm.politicalEmancipation || '';

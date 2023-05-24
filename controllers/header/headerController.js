@@ -20,8 +20,8 @@ module.exports = {
         let logo;
         let background;
 
-        if (req.files.logo) { logo = `${process.env.BASE_URL}/uploads/header/${req.files.logo[0]?.filename}`; }
-        if (req.files.background) { background = `${process.env.BASE_URL}/uploads/header/${req.files.background[0]?.filename}`; }
+        if (req.files.logo) { logo = `${process.env.BASE_URL}/api-consorcio/uploads/header/${req.files.logo[0]?.filename}`; }
+        if (req.files.background) { background = `${process.env.BASE_URL}/api-consorcio/uploads/header/${req.files.background[0]?.filename}`; }
 
         const newHeader = `INSERT INTO header(
             logo,

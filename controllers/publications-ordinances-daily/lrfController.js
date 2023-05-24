@@ -25,7 +25,7 @@ module.exports = {
         const exercise = dataForm.exercise || '';
         const secretary = dataForm.secretary || '';
         const competence = dataForm.competence || '';
-        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/uploads/lrf/${req.files[0]?.filename}` : '';
+        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/lrf/${req.files[0]?.filename}` : '';
         const description = dataForm.description || '';
 
 
@@ -78,7 +78,7 @@ module.exports = {
         const exercise = dataForm.exercise || '';
         const secretary = dataForm.secretary || '';
         const competence = dataForm.competence || '';
-        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/uploads/lrf/${req.files[0]?.filename}` : dataForm.file;
+        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/lrf/${req.files[0]?.filename}` : dataForm.file;
         const description = dataForm.description || '';
 
         const updateLrf = 'UPDATE `lrf` SET `typeFile`= ?,' +
