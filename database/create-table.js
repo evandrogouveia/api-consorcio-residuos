@@ -4,9 +4,9 @@ const pool = mysql.createPool({
     multipleStatements: true,
     host: '185.169.99.137',
     port: '3306',
-    user: 'ce180037_camara',
+    user: 'ce180037_consorc',
     password: 'c@m@ra2088*&99Gw0',
-    database: 'ce180037_camara',
+    database: 'ce180037_consorcio',
     waitForConnections: true,
     connectionLimit: 10,
     maxIdle: 10, // max idle connections, the default value is the same as `connectionLimit`
@@ -21,6 +21,19 @@ pool.getConnection(function (err) {
 });
 
 function createTable(conn) {
+      /* CRIAR TABELA DA HOME (CONSORCIO)*/
+      const sqlHome = "CREATE TABLE IF NOT EXISTS home(\n" +
+      "ID int NOT NULL AUTO_INCREMENT,\n" +
+      "banner1 varchar(200),\n" +
+      "banner2 varchar(200),\n" +
+      "banner3 varchar(200),\n" +
+      "banner4 varchar(200),\n" +
+      "banner5 varchar(200),\n" +
+      "banner6 varchar(200),\n" +
+      "categories JSON,\n" +
+      "PRIMARY KEY (ID)\n" +
+      ");";
+    
 
     /* CRIAR TABELA DE MUNICIPIOS (CONSORCIO) */
     const sqlMunicipios = "CREATE TABLE IF NOT EXISTS municipios(\n" +
@@ -193,8 +206,18 @@ function createTable(conn) {
         "PRIMARY KEY (ID)\n" +
         ");";
 
+    /* CRIAR TABELA DE CONFIGURAÇÕES (CONSORCIO) */
+    const sqlConfiguracoes = "CREATE TABLE IF NOT EXISTS configuracoes(\n" +
+        "ID int NOT NULL AUTO_INCREMENT,\n" +
+        "temaGeral JSON,\n" +
+        "botoes JSON,\n" +
+        "rodape JSON,\n" +
+        "rodapeInferior JSON,\n" +
+        "PRIMARY KEY (ID)\n" +
+        ");";
 
-    conn.query(sqlUsersConsorcio, function (error, results, fields) {
+
+    conn.query(sqlConfiguracoes, function (error, results, fields) {
         if (error) return console.log(error);
         console.log('criou a tabela');
         pool.end();

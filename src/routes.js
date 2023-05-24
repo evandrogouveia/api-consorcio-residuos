@@ -19,6 +19,7 @@ const homeController = require('../controllers/home/homeController');
 const videosController = require('../controllers/consorcio/videosController');
 const lrfController = require('../controllers/publications-ordinances-daily/lrfController');
 const leisController = require('../controllers/publications-ordinances-daily/leisController');
+const configuracoesController = require('../controllers/configuracoes/configuracoesController');
 const router = require('express').Router();
 
 router.get('/', (req, res) => res.json({ message: 'Funcionando!' }));
@@ -42,7 +43,10 @@ router.patch('/update-header/:id', multer(headerController).fields([
 router.post('/register-home', multer(homeController).fields([
     {name: 'banner1'},
     {name: 'banner2'},
-    {name: 'banner3'}
+    {name: 'banner3'},
+    {name: 'banner4'},
+    {name: 'banner5'},
+    {name: 'banner6'}
 ]), homeController.registerHome);
 //obtem dados da home
 router.get('/home', homeController.getHome);
@@ -50,7 +54,10 @@ router.get('/home', homeController.getHome);
 router.patch('/update-home/:id', multer(homeController).fields([
     {name: 'banner1'},
     {name: 'banner2'},
-    {name: 'banner3'}
+    {name: 'banner3'},
+    {name: 'banner4'},
+    {name: 'banner5'},
+    {name: 'banner6'}
 ]), homeController.updateHome);
 
 /*--------------------------- (CONSORCIO) - ROTAS DE VÌDEOS ---------------------------*/
@@ -214,5 +221,13 @@ router.get('/user', authController.verifyToken, userController.getUser);
 router.get('/user-all', userController.getUserAll);
 //fazer logout
 router.post('/logout', userController.logout);
+
+/*--------------------------- (CONSORCIO) - ROTAS DE CONFIGURAÇÕES ---------------------------*/
+//adiciona dados da configurações
+router.post('/new-configuracoes', configuracoesController.novaConfiguracao);
+//obtem dados da configurações
+router.get('/all-configuracoes', configuracoesController.getConfiguracoes);
+//atualiza dados da configurações
+router.patch('/update-configuracoes/:id', configuracoesController.updateConfiguracoes);
 
 module.exports = router;
