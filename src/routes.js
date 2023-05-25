@@ -17,8 +17,8 @@ const userController = require('../controllers/login/userController');
 const headerController = require('../controllers/header/headerController');
 const homeController = require('../controllers/home/homeController');
 const videosController = require('../controllers/consorcio/videosController');
-const lrfController = require('../controllers/publications-ordinances-daily/lrfController');
-const leisController = require('../controllers/publications-ordinances-daily/leisController');
+const lrfController = require('../controllers/lrf-contas-publicas/lrfController');
+const leisController = require('../controllers/lrf-contas-publicas/leisController');
 const configuracoesController = require('../controllers/configuracoes/configuracoesController');
 const router = require('express').Router();
 
