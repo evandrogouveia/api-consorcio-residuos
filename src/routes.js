@@ -20,6 +20,7 @@ const videosController = require('../controllers/consorcio/videosController');
 const lrfController = require('../controllers/lrf-contas-publicas/lrfController');
 const leisController = require('../controllers/lrf-contas-publicas/leisController');
 const configuracoesController = require('../controllers/configuracoes/configuracoesController');
+const arquivosPoloController = require('../controllers/consorcio/arquivosPoloController');
 const router = require('express').Router();
 
 router.get('/', (req, res) => res.json({ message: 'Funcionando!' }));
@@ -109,6 +110,16 @@ router.get('/all-polos', polosController.getPolos);
 router.patch('/update-polo/:id', polosController.updatePolo);
 //deleta o polo
 router.delete('/delete-polo/:id', polosController.deletePolo);
+
+/*--------------------------- (CONSORCIO) - ROTAS DE ARQUIVOS DE POLO ---------------------------*/
+//adiciona uma novo arquivo
+router.post('/new-arquivo',  multer(arquivosPoloController).array('file'), arquivosPoloController.newArquivo);
+//obtem todas os arquivos
+router.get('/all-arquivos', arquivosPoloController.getAllArquivos);
+//atualiza o arquivo
+router.patch('/update-arquivo/:id', multer(arquivosPoloController).array('file'), arquivosPoloController.updateArquivo);
+//deleta arquivo
+router.delete('/delete-arquivo/:id', arquivosPoloController.deleteArquivo);
 
 /*--------------------------- (CONSORCIO) - ROTAS DE CONSORCIO ---------------------------*/
 //adiciona dados da consorcio

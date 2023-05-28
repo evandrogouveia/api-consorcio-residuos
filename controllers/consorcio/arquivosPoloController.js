@@ -5,7 +5,7 @@ let fs = require('fs-extra');
 module.exports = {
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
-            let path = `./uploads/lrf`;
+            let path = `./uploads/arquivos_polo`;
             if (!fs.existsSync(path)) {
                 fs.mkdirSync(path); //gera o diretório automaticamente
             }
@@ -17,20 +17,22 @@ module.exports = {
     }),
 
 
-    newLrf(req, res) {
-        let dataForm = JSON.parse(req.body.formLrf);
+    newArquivo(req, res) {
+        let dataForm = JSON.parse(req.body.formArquivo);
         
         const typeFile = dataForm.typeFile;
+        const title = dataForm.title || '';
         const date = dataForm.date || '';
         const exercise = dataForm.exercise || '';
         const secretary = dataForm.secretary || '';
         const competence = dataForm.competence || '';
-        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/lrf/${req.files[0]?.filename}` : '';
+        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/arquivos_polo/${req.files[0]?.filename}` : '';
         const description = dataForm.description || '';
         const acronym = dataForm.acronym || '';
 
-        const newLrf = `INSERT INTO lrf(
+        const newArquivo = `INSERT INTO arquivos_polo(
             typeFile,
+            title,
             date, 
             exercise,
             secretary,
@@ -40,6 +42,7 @@ module.exports = {
             acronym
             ) VALUES (
                 '${typeFile}',
+                '${title}',
                 '${date}', 
                 '${exercise}', 
                 '${secretary}',
@@ -49,21 +52,21 @@ module.exports = {
                 '${acronym}'
             )`;
 
-        connection.query(newLrf, [], function (error, resultsRegister, fields) {
+        connection.query(newArquivo, [], function (error, resultsRegister, fields) {
             if (error) {
-                res.status(400).json({ status: 0, message: 'Erro ao inserir lrf', error: error });
+                res.status(400).json({ status: 0, message: 'Erro ao inserir arquivo', error: error });
             } else {
                 res.status(200).json({ status: 1, message: 'sucesso!' });
             }
         });
     },
 
-    getAllLrf(req, res) {
-        const selectLrf = `SELECT * FROM lrf ORDER BY date DESC`;
+    getAllArquivos(req, res) {
+        const selectArquivo = `SELECT * FROM arquivos_polo ORDER BY date DESC`;
 
-        connection.query(selectLrf, [], function (error, results, fields) {
+        connection.query(selectArquivo, [], function (error, results, fields) {
             if (error) {
-                res.status(400).json({ status: 0, message: 'Erro ao obter lrf', error: error });
+                res.status(400).json({ status: 0, message: 'Erro ao obter arquivo', error: error });
             } else {
                 res.status(200).json(results);
             }
@@ -71,20 +74,22 @@ module.exports = {
 
     },
     
-    updateLrf(req, res) {
+    updateArquivo(req, res) {
         const id = parseInt(req.params.id);
-        let dataForm = JSON.parse(req.body.formLrf);
+        let dataForm = JSON.parse(req.body.formArquivo);
         
         const typeFile = dataForm.typeFile;
+        const title = dataForm.title || '';
         const date = dataForm.date || '';
         const exercise = dataForm.exercise || '';
         const secretary = dataForm.secretary || '';
         const competence = dataForm.competence || '';
-        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/lrf/${req.files[0]?.filename}` : dataForm.file;
+        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/arquivos_polo/${req.files[0]?.filename}` : dataForm.file;
         const description = dataForm.description || '';
         const acronym = dataForm.acronym || '';
 
-        const updateLrf = 'UPDATE `lrf` SET `typeFile`= ?,' +
+        const updateArquivo= 'UPDATE `arquivos_polo` SET `typeFile`= ?,' +
+            '`title`= ?,' +
             '`date`= ?,' +
             '`exercise`= ?,' +
             '`secretary`= ?,' +
@@ -92,10 +97,11 @@ module.exports = {
             '`file`= ?,' +
             '`description`= ?,' +
             '`acronym`= ?' +
-            'WHERE `lrf`.`ID`= ?';
+            'WHERE `arquivos_polo`.`ID`= ?';
 
-        connection.query(updateLrf, [
+        connection.query(updateArquivo, [
             typeFile,
+            title,
             date,
             exercise,
             secretary,
@@ -106,20 +112,20 @@ module.exports = {
             id
         ], function (error, results, fields) {
             if (error) {
-                res.status(400).json({ message: 'Erro ao atualizar lrf', error: error });
+                res.status(400).json({ message: 'Erro ao atualizar arquivo', error: error });
             } else {
-                res.status(200).json({ status: 1, message: 'Lrf atualizada!' });
+                res.status(200).json({ status: 1, message: 'Arquivo atualizado!' });
             }
         });
     },
 
-    deleteLrf(req, res) {
+    deleteArquivo(req, res) {
         const id = parseInt(req.params.id);
-        const deleteLrf = `DELETE FROM lrf WHERE ID = ?`;
+        const deleteArquivo = `DELETE FROM arquivos_polo WHERE ID = ?`;
 
-        connection.query(deleteLrf, [id], function (error, results, fields) {
+        connection.query(deleteArquivo, [id], function (error, results, fields) {
             if (error) {
-                res.status(400).json({ status: 0, message: 'Erro ao excluir lrf', error: error });
+                res.status(400).json({ status: 0, message: 'Erro ao excluir arquivo', error: error });
             } else {
                 res.status(200).json(results);
             }

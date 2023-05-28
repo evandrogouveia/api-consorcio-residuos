@@ -216,8 +216,40 @@ function createTable(conn) {
         "PRIMARY KEY (ID)\n" +
         ");";
 
+    /* CRIAR TABELA DE LRF*/
+    const sqlLrf = "CREATE TABLE IF NOT EXISTS lrf(\n" +
+    "ID int NOT NULL AUTO_INCREMENT,\n" +
+    "typeFile varchar(150),\n" +
+    "date varchar(50),\n" +
+    "exercise varchar(50),\n" +
+    "secretary varchar(150),\n" +
+    "competence varchar(150),\n" +
+    "file varchar(200),\n" +
+    "description varchar(5000),\n" +
+    "acronym varchar(20),\n" +
+    "PRIMARY KEY (ID)\n" +
+    ");";
 
-    conn.query(sqlConfiguracoes, function (error, results, fields) {
+    /* CRIAR TABELA DE ARQUIVOS DE POLO*/
+    const sqlArquivosPolo = "CREATE TABLE IF NOT EXISTS arquivos_polo(\n" +
+    "ID int NOT NULL AUTO_INCREMENT,\n" +
+    "typeFile varchar(150),\n" +
+    "title varchar(250),\n" +
+    "date varchar(50),\n" +
+    "exercise varchar(50),\n" +
+    "secretary varchar(150),\n" +
+    "competence varchar(150),\n" +
+    "file varchar(200),\n" +
+    "description varchar(5000),\n" +
+    "acronym varchar(20),\n" +
+    "PRIMARY KEY (ID)\n" +
+    ");";
+
+    const novaColunaLrf = "ALTER TABLE lrf ADD COLUMN acronym VARCHAR(20) AFTER description";
+    const novaColunaArquivos = "ALTER TABLE arquivos_polo ADD COLUMN title VARCHAR(250) AFTER typeFile";
+
+
+    conn.query(novaColunaArquivos, function (error, results, fields) {
         if (error) return console.log(error);
         console.log('criou a tabela');
         pool.end();
