@@ -20,12 +20,17 @@ module.exports = {
     newProcessoSeletivo(req, res) {
         let dataForm = JSON.parse(req.body.formProcessoSeletivo);
 
+        const arrayFile = [];
+        for(const file of req.files) {
+            arrayFile.push(`${process.env.BASE_URL}/api-consorcio/uploads/processo_seletivo/${file?.filename}`)
+        }
+
         const typeFile = dataForm.typeFile;
         const typeFileID = dataForm.typeFileID;
         const date = dataForm.date || '';
         const exercise = dataForm.exercise || '';
         const secretary = dataForm.secretary || '';
-        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/processo_seletivo/${req.files[0]?.filename}` : '';
+        const file = arrayFile;
         const description = dataForm.description || '';
 
         const newProcessoSeletivo = `INSERT INTO processoseletivo(
@@ -42,7 +47,7 @@ module.exports = {
                 '${date}', 
                 '${exercise}', 
                 '${secretary}',
-                '${file}',
+                '${JSON.stringify(file)}',
                 '${description}'
             )`;
 
@@ -70,13 +75,18 @@ module.exports = {
     updateProcessoSeletivo(req, res) {
         const id = parseInt(req.params.id);
         let dataForm = JSON.parse(req.body.formLrf);
+
+        const arrayFile = [];
+        for(const file of req.files) {
+            arrayFile.push(`${process.env.BASE_URL}/api-consorcio/uploads/processo_seletivo/${file?.filename}`)
+        }
         
         const typeFile = dataForm.typeFile;
         const typeFileID = dataForm.typeFileID;
         const date = dataForm.date || '';
         const exercise = dataForm.exercise || '';
         const secretary = dataForm.secretary || '';
-        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/processo_seletivo/${req.files[0]?.filename}` : dataForm.file;
+        const file = arrayFile.length > 0 ? arrayFile : dataForm.file;
         const description = dataForm.description || '';
 
         const updateProcessoSeletivo = 'UPDATE `processoseletivo` SET `typeFile`= ?,' +
@@ -94,7 +104,7 @@ module.exports = {
             date,
             exercise,
             secretary,
-            file,
+            JSON.stringify(file),
             description,
             id
         ], function (error, results, fields) {

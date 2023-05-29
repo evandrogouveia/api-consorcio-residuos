@@ -116,7 +116,7 @@ function createTable(conn) {
         "date varchar(50),\n" +
         "exercise varchar(50),\n" +
         "secretary varchar(200),\n" +
-        "file varchar(500),\n" +
+        "file JSON,\n" +
         "description varchar(6000),\n" +
         "PRIMARY KEY (ID)\n" +
         ");";
@@ -249,7 +249,7 @@ function createTable(conn) {
     const novaColunaArquivos = "ALTER TABLE arquivos_polo ADD COLUMN title VARCHAR(250) AFTER typeFile";
 
 
-    conn.query(novaColunaArquivos, function (error, results, fields) {
+    conn.query(sqlProcessoSeletivo, function (error, results, fields) {
         if (error) return console.log(error);
         console.log('criou a tabela');
         pool.end();
