@@ -247,9 +247,10 @@ function createTable(conn) {
 
     const novaColunaLrf = "ALTER TABLE lrf ADD COLUMN acronym VARCHAR(20) AFTER description";
     const novaColunaArquivos = "ALTER TABLE arquivos_polo ADD COLUMN title VARCHAR(250) AFTER typeFile";
+    const novaColunaPolos = "ALTER TABLE polos ADD COLUMN image VARCHAR(250) AFTER ID";
 
 
-    conn.query(sqlProcessoSeletivo, function (error, results, fields) {
+    conn.query(novaColunaPolos, function (error, results, fields) {
         if (error) return console.log(error);
         console.log('criou a tabela');
         pool.end();

@@ -103,11 +103,11 @@ router.delete('/delete-county/:id', municipiosController.deleteCounty);
 
 /*--------------------------- (CONSORCIO) - ROTAS DE POLOS  ---------------------------*/
 //adiciona um novo polo
-router.post('/new-polo', polosController.newPolo);
+router.post('/new-polo', multer(polosController).array('file'), polosController.newPolo);
 //obtem todos os polos
 router.get('/all-polos', polosController.getPolos);
 //atualiza o polo
-router.patch('/update-polo/:id', polosController.updatePolo);
+router.patch('/update-polo/:id', multer(polosController).array('file'), polosController.updatePolo);
 //deleta o polo
 router.delete('/delete-polo/:id', polosController.deletePolo);
 
