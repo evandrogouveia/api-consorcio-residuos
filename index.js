@@ -19,6 +19,7 @@ app.use(router);
 app.use('/api-consorcio/uploads', express.static('uploads'));
 
 app.use('/api-consorcio/', router);
+
 //app.use('/', cors(), router);
 
 app.listen(port);
