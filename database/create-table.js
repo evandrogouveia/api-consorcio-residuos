@@ -24,12 +24,7 @@ function createTable(conn) {
       /* CRIAR TABELA DA HOME (CONSORCIO)*/
       const sqlHome = "CREATE TABLE IF NOT EXISTS home(\n" +
       "ID int NOT NULL AUTO_INCREMENT,\n" +
-      "banner1 varchar(200),\n" +
-      "banner2 varchar(200),\n" +
-      "banner3 varchar(200),\n" +
-      "banner4 varchar(200),\n" +
-      "banner5 varchar(200),\n" +
-      "banner6 varchar(200),\n" +
+      "banners JSON,\n" +
       "categories JSON,\n" +
       "PRIMARY KEY (ID)\n" +
       ");";
@@ -250,7 +245,7 @@ function createTable(conn) {
     const novaColunaPolos = "ALTER TABLE polos ADD COLUMN image VARCHAR(250) AFTER ID";
 
 
-    conn.query(novaColunaPolos, function (error, results, fields) {
+    conn.query(sqlHome, function (error, results, fields) {
         if (error) return console.log(error);
         console.log('criou a tabela');
         pool.end();

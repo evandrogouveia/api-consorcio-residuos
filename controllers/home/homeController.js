@@ -19,36 +19,20 @@ module.exports = {
     registerHome(req, res) {
         let dataForm = JSON.parse(req.body.formHome);
         const categories = dataForm.categories;
-        let banner1;
-        let banner2;
-        let banner3;
-        let banner4;
-        let banner5;
-        let banner6;
 
-        if (req.files.banner1) { banner1 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner1[0]?.filename}` };
-        if (req.files.banner2) { banner2 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner2[0]?.filename}` };
-        if (req.files.banner3) { banner3 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner3[0]?.filename}` };
-        if (req.files.banner4) { banner4 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner4[0]?.filename}` };
-        if (req.files.banner5) { banner5 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner5[0]?.filename}` };
-        if (req.files.banner6) { banner6 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner6[0]?.filename}` };
+        if (req.files.banner1) { dataForm.banners.banner1 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner1[0]?.filename}` };
+        if (req.files.banner2) { dataForm.banners.banner2 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner2[0]?.filename}` };
+        if (req.files.banner3) { dataForm.banners.banner3 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner3[0]?.filename}` };
+        if (req.files.banner4) { dataForm.banners.banner4 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner4[0]?.filename}` };
+        if (req.files.banner5) { dataForm.banners.banner5 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner5[0]?.filename}` };
+        if (req.files.banner6) { dataForm.banners.banner6 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner6[0]?.filename}` };
 
         const newHome = `INSERT INTO home(
             categories,
-            banner1,
-            banner2,
-            banner3,
-            banner4,
-            banner5,
-            banner6
+            banners
             ) VALUES (
                 '${JSON.stringify(categories)}',
-                '${banner1}',
-                '${banner2}',
-                '${banner3}',
-                '${banner4}',
-                '${banner5}',
-                '${banner6}'
+                '${JSON.stringify(dataForm.banners)}'
             )`;
 
         connection.query(newHome, [], function (error, results, fields) {
@@ -78,36 +62,20 @@ module.exports = {
         let dataForm = JSON.parse(req.body.formHome);
 
         const categories = dataForm.categories;
-        let banner1;
-        let banner2;
-        let banner3;
-        let banner4;
-        let banner5;
-        let banner6;
 
-        req.files.banner1 ? banner1 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner1[0]?.filename}` : banner1 = dataForm.banner1;
-        req.files.banner2 ? banner2 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner2[0]?.filename}` : banner2 = dataForm.banner2;
-        req.files.banner3 ? banner3 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner3[0]?.filename}` : banner3 = dataForm.banner3;
-        req.files.banner4 ? banner4 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner4[0]?.filename}` : banner4 = dataForm.banner4;
-        req.files.banner5 ? banner5 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner5[0]?.filename}` : banner5 = dataForm.banner5;
-        req.files.banner6 ? banner6 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner6[0]?.filename}` : banner6 = dataForm.banner6;
+        req.files.banner1 ? dataForm.banners.banner1 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner1[0]?.filename}` : dataForm.banners.banner1 = dataForm.banners.banner1;
+        req.files.banner2 ? dataForm.banners.banner2 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner2[0]?.filename}` : dataForm.banners.banner2 = dataForm.banners.banner2;
+        req.files.banner3 ? dataForm.banners.banner3 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner3[0]?.filename}` : dataForm.banners.banner3 = dataForm.banners.banner3;
+        req.files.banner4 ? dataForm.banners.banner4 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner4[0]?.filename}` : dataForm.banners.banner4 = dataForm.banners.banner4;
+        req.files.banner5 ? dataForm.banners.banner5 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner5[0]?.filename}` : dataForm.banners.banner5 = dataForm.banners.banner5;
+        req.files.banner6 ? dataForm.banners.banner6 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner6[0]?.filename}` : dataForm.banners.banner6 = dataForm.banners.banner6;
 
-        const updateHome = 'UPDATE `home` SET `banner1`= ?,' +
-            '`banner2`= ?,' +
-            '`banner3`= ?,' +
-            '`banner4`= ?,' +
-            '`banner5`= ?,' +
-            '`banner6`= ?,' +
+        const updateHome = 'UPDATE `home` SET `banners`= ?,' +
             '`categories`= ?' +
             'WHERE `home`.`ID`= ?';
 
         connection.query(updateHome, [
-            banner1,
-            banner2,
-            banner3,
-            banner4,
-            banner5,
-            banner6,
+            JSON.stringify(dataForm.banners),
             JSON.stringify(categories),
             id
         ], function (error, results, fields) {
