@@ -74,7 +74,7 @@ module.exports = {
     
     updateProcessoSeletivo(req, res) {
         const id = parseInt(req.params.id);
-        let dataForm = JSON.parse(req.body.formLrf);
+        let dataForm = JSON.parse(req.body.formProcessoSeletivo);
 
         const arrayFile = [];
         for(const file of req.files) {
