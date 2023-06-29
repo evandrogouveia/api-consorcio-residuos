@@ -61,7 +61,7 @@ module.exports = {
     },
 
     getAllProcessoSeletivo(req, res) {
-        const selectProcessoSeletivo = `SELECT * FROM processoseletivo ORDER BY ID DESC`;
+        const selectProcessoSeletivo = `SELECT * FROM processoseletivo ORDER BY date DESC`;
 
         connection.query(selectProcessoSeletivo, [], function (error, results, fields) {
             if (error) {
