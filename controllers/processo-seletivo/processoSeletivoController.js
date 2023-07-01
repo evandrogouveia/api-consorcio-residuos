@@ -22,7 +22,7 @@ module.exports = {
 
         const arrayFile = [];
         for(const file of req.files) {
-            arrayFile.push(`${process.env.BASE_URL}/api-consorcio/uploads/processo_seletivo/${file?.filename}`)
+            arrayFile.push(`${process.env.BASE_URL}/api-consorcio-residuos/uploads/processo_seletivo/${file?.filename}`)
         }
 
         const typeFile = dataForm.typeFile;
@@ -78,7 +78,7 @@ module.exports = {
 
         const arrayFile = [];
         for(const file of req.files) {
-            arrayFile.push(`${process.env.BASE_URL}/api-consorcio/uploads/processo_seletivo/${file?.filename}`)
+            arrayFile.push(`${process.env.BASE_URL}/api-consorcio-residuos/uploads/processo_seletivo/${file?.filename}`)
         }
         
         const typeFile = dataForm.typeFile;

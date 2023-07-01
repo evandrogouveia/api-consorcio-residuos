@@ -24,7 +24,7 @@ module.exports = {
         const date = dataForm.date || '';
         const exercise = dataForm.exercise || '';
         const number = dataForm.number;
-        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/leis/${req.files[0]?.filename}` : '';
+        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio-residuos/uploads/leis/${req.files[0]?.filename}` : '';
         const description = dataForm.description || '';
 
 
@@ -74,7 +74,7 @@ module.exports = {
         const date = dataForm.date || '';
         const exercise = dataForm.exercise || '';
         const number = dataForm.number || '';
-        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/leis/${req.files[0]?.filename}` : dataForm.file;
+        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio-residuos/uploads/leis/${req.files[0]?.filename}` : dataForm.file;
         const description = dataForm.description || '';
 
         const updateLei = 'UPDATE `leis` SET `typeFile`= ?,' +

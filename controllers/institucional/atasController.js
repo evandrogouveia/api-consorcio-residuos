@@ -21,7 +21,7 @@ module.exports = {
         let dataForm = JSON.parse(req.body.formAtas);
         const arrayFile = [];
         for(const file of req.files) {
-            arrayFile.push(`${process.env.BASE_URL}/api-consorcio/uploads/atas/${file?.filename}`)
+            arrayFile.push(`${process.env.BASE_URL}/api-consorcio-residuos/uploads/atas/${file?.filename}`)
         }
         const title = dataForm.title;
         const date = dataForm.date || '';
@@ -87,7 +87,7 @@ module.exports = {
 
         const arrayFile = [];
         for(const file of req.files) {
-            arrayFile.push(`${process.env.BASE_URL}/api-consorcio/uploads/atas/${file?.filename}`)
+            arrayFile.push(`${process.env.BASE_URL}/api-consorcio-residuos/uploads/atas/${file?.filename}`)
         }
         
         const title = dataForm.title;

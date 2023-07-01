@@ -21,7 +21,7 @@ module.exports = {
         let dataForm = JSON.parse(req.body.formLicitacao);
         const arrayFile = [];
         for(const file of req.files) {
-            arrayFile.push(`${process.env.BASE_URL}/api-consorcio/uploads/licitacoes/${file?.filename}`)
+            arrayFile.push(`${process.env.BASE_URL}/api-consorcio-residuos/uploads/licitacoes/${file?.filename}`)
         }
         const title = dataForm.title;
         const processNumber = dataForm.processNumber || '';
@@ -113,7 +113,7 @@ module.exports = {
 
         const arrayFile = [];
         for(const file of req.files) {
-            arrayFile.push(`${process.env.BASE_URL}/api-consorcio/uploads/licitacoes/${file?.filename}`)
+            arrayFile.push(`${process.env.BASE_URL}/api-consorcio-residuos/uploads/licitacoes/${file?.filename}`)
         }
         
         const title = dataForm.title;

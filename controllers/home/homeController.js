@@ -20,12 +20,12 @@ module.exports = {
         let dataForm = JSON.parse(req.body.formHome);
         const categories = dataForm.categories;
 
-        if (req.files.banner1) { dataForm.banners.banner1 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner1[0]?.filename}` };
-        if (req.files.banner2) { dataForm.banners.banner2 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner2[0]?.filename}` };
-        if (req.files.banner3) { dataForm.banners.banner3 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner3[0]?.filename}` };
-        if (req.files.banner4) { dataForm.banners.banner4 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner4[0]?.filename}` };
-        if (req.files.banner5) { dataForm.banners.banner5 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner5[0]?.filename}` };
-        if (req.files.banner6) { dataForm.banners.banner6 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner6[0]?.filename}` };
+        if (req.files.banner1) { dataForm.banners.banner1 = `${process.env.BASE_URL}/api-consorcio-residuos/uploads/home/${req.files.banner1[0]?.filename}` };
+        if (req.files.banner2) { dataForm.banners.banner2 = `${process.env.BASE_URL}/api-consorcio-residuos/uploads/home/${req.files.banner2[0]?.filename}` };
+        if (req.files.banner3) { dataForm.banners.banner3 = `${process.env.BASE_URL}/api-consorcio-residuos/uploads/home/${req.files.banner3[0]?.filename}` };
+        if (req.files.banner4) { dataForm.banners.banner4 = `${process.env.BASE_URL}/api-consorcio-residuos/uploads/home/${req.files.banner4[0]?.filename}` };
+        if (req.files.banner5) { dataForm.banners.banner5 = `${process.env.BASE_URL}/api-consorcio-residuos/uploads/home/${req.files.banner5[0]?.filename}` };
+        if (req.files.banner6) { dataForm.banners.banner6 = `${process.env.BASE_URL}/api-consorcio-residuos/uploads/home/${req.files.banner6[0]?.filename}` };
 
         const newHome = `INSERT INTO home(
             categories,
@@ -63,12 +63,12 @@ module.exports = {
 
         const categories = dataForm.categories;
 
-        req.files.banner1 ? dataForm.banners.banner1 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner1[0]?.filename}` : dataForm.banners.banner1 = dataForm.banners.banner1;
-        req.files.banner2 ? dataForm.banners.banner2 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner2[0]?.filename}` : dataForm.banners.banner2 = dataForm.banners.banner2;
-        req.files.banner3 ? dataForm.banners.banner3 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner3[0]?.filename}` : dataForm.banners.banner3 = dataForm.banners.banner3;
-        req.files.banner4 ? dataForm.banners.banner4 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner4[0]?.filename}` : dataForm.banners.banner4 = dataForm.banners.banner4;
-        req.files.banner5 ? dataForm.banners.banner5 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner5[0]?.filename}` : dataForm.banners.banner5 = dataForm.banners.banner5;
-        req.files.banner6 ? dataForm.banners.banner6 = `${process.env.BASE_URL}/api-consorcio/uploads/home/${req.files.banner6[0]?.filename}` : dataForm.banners.banner6 = dataForm.banners.banner6;
+        req.files.banner1 ? dataForm.banners.banner1 = `${process.env.BASE_URL}/api-consorcio-residuos/uploads/home/${req.files.banner1[0]?.filename}` : dataForm.banners.banner1 = dataForm.banners.banner1;
+        req.files.banner2 ? dataForm.banners.banner2 = `${process.env.BASE_URL}/api-consorcio-residuos/uploads/home/${req.files.banner2[0]?.filename}` : dataForm.banners.banner2 = dataForm.banners.banner2;
+        req.files.banner3 ? dataForm.banners.banner3 = `${process.env.BASE_URL}/api-consorcio-residuos/uploads/home/${req.files.banner3[0]?.filename}` : dataForm.banners.banner3 = dataForm.banners.banner3;
+        req.files.banner4 ? dataForm.banners.banner4 = `${process.env.BASE_URL}/api-consorcio-residuos/uploads/home/${req.files.banner4[0]?.filename}` : dataForm.banners.banner4 = dataForm.banners.banner4;
+        req.files.banner5 ? dataForm.banners.banner5 = `${process.env.BASE_URL}/api-consorcio-residuos/uploads/home/${req.files.banner5[0]?.filename}` : dataForm.banners.banner5 = dataForm.banners.banner5;
+        req.files.banner6 ? dataForm.banners.banner6 = `${process.env.BASE_URL}/api-consorcio-residuos/uploads/home/${req.files.banner6[0]?.filename}` : dataForm.banners.banner6 = dataForm.banners.banner6;
 
         const updateHome = 'UPDATE `home` SET `banners`= ?,' +
             '`categories`= ?' +

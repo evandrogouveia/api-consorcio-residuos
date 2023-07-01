@@ -4,9 +4,9 @@ const pool = mysql.createPool({
     multipleStatements: true,
     host: '185.169.99.137',
     port: '3306',
-    user: 'ce180037_consorc',
-    password: 'c@m@ra2088*&99Gw0',
-    database: 'ce180037_consorcio',
+    user: 'ce180037_consorcio_residuos',
+    password: 'T2qK25@ZKUiX',
+    database: 'ce180037_consorcio_residuos',
     waitForConnections: true,
     connectionLimit: 10,
     maxIdle: 10, // max idle connections, the default value is the same as `connectionLimit`
@@ -21,14 +21,33 @@ pool.getConnection(function (err) {
 });
 
 function createTable(conn) {
-      /* CRIAR TABELA DA HOME (CONSORCIO)*/
-      const sqlHome = "CREATE TABLE IF NOT EXISTS home(\n" +
-      "ID int NOT NULL AUTO_INCREMENT,\n" +
-      "banners JSON,\n" +
-      "categories JSON,\n" +
-      "PRIMARY KEY (ID)\n" +
-      ");";
-    
+    /* CRIAR TABELA DO HEADER*/
+    const sqlHeader = "CREATE TABLE IF NOT EXISTS header(\n" +
+        "ID int NOT NULL AUTO_INCREMENT,\n" +
+        "logo varchar(200),\n" +
+        "background varchar(200),\n" +
+        "PRIMARY KEY (ID)\n" +
+        ");";
+
+    conn.query(sqlHeader, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela header');
+    });
+
+
+    /* CRIAR TABELA DA HOME (CONSORCIO)*/
+    const sqlHome = "CREATE TABLE IF NOT EXISTS home(\n" +
+        "ID int NOT NULL AUTO_INCREMENT,\n" +
+        "banners JSON,\n" +
+        "categories JSON,\n" +
+        "PRIMARY KEY (ID)\n" +
+        ");";
+
+    conn.query(sqlHome, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela home');
+    });
+
 
     /* CRIAR TABELA DE MUNICIPIOS (CONSORCIO) */
     const sqlMunicipios = "CREATE TABLE IF NOT EXISTS municipios(\n" +
@@ -53,9 +72,15 @@ function createTable(conn) {
         "PRIMARY KEY (ID)\n" +
         ");";
 
+    conn.query(sqlMunicipios, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela municipios');
+    });
+
     /* CRIAR TABELA DE POLOS (CONSORCIO) */
     const sqlPolos = "CREATE TABLE IF NOT EXISTS polos(\n" +
         "ID int NOT NULL AUTO_INCREMENT,\n" +
+        "image varchar(250),\n" +
         "title varchar(150),\n" +
         "subtitle varchar(350),\n" +
         "institutional JSON,\n" +
@@ -64,6 +89,11 @@ function createTable(conn) {
         "functions varchar(150),\n" +
         "PRIMARY KEY (ID)\n" +
         ");";
+
+    conn.query(sqlPolos, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela polos');
+    });
 
 
     /* CRIAR TABELA DA CONSORCIO (CONSORCIO)*/
@@ -78,6 +108,11 @@ function createTable(conn) {
         "PRIMARY KEY (ID)\n" +
         ");";
 
+    conn.query(sqlConsorcio, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela consorcio');
+    });
+
 
     /* CRIAR TABELA DE CATEGORIAS DE NOTÍCIAS (CONSORCIO)*/
     const sqlConsorcioNewsCategory = "CREATE TABLE IF NOT EXISTS newsConsorcioCategory (\n" +
@@ -86,6 +121,11 @@ function createTable(conn) {
         "description varchar(150),\n" +
         "PRIMARY KEY (ID)\n" +
         ");";
+
+    conn.query(sqlConsorcioNewsCategory, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela newConsorcioCategory');
+    });
 
     /* CRIAR TABELA DE NOTÍCIAS (CONSORCIO) */
     const sqlConsorcioNews = "CREATE TABLE IF NOT EXISTS newsConsorcio (\n" +
@@ -102,6 +142,24 @@ function createTable(conn) {
         "PRIMARY KEY (ID)\n" +
         ");";
 
+    conn.query(sqlConsorcioNews, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela newsConsorcio');
+    });
+
+    /* CRIAR TABELA DE VÍDEOS*/
+    const sqlVideos = "CREATE TABLE IF NOT EXISTS videos (\n" +
+        "ID int NOT NULL AUTO_INCREMENT,\n" +
+        "title varchar(150) NOT NULL,\n" +
+        "link varchar(150),\n" +
+        "PRIMARY KEY (ID)\n" +
+        ");";
+
+    conn.query(sqlVideos, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela videos');
+    });
+
 
     /* CRIAR TABELA DE PROCESSO SELETIVO (CONSORCIO) */
     const sqlProcessoSeletivo = "CREATE TABLE IF NOT EXISTS processoseletivo(\n" +
@@ -116,6 +174,11 @@ function createTable(conn) {
         "PRIMARY KEY (ID)\n" +
         ");";
 
+    conn.query(sqlProcessoSeletivo, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela processoseletivo');
+    });
+
 
     /* CRIAR TABELA DE CATEGORIAS DE PROCESSO SELETIVO (CONSORCIO)*/
     const sqlPsCategory = "CREATE TABLE IF NOT EXISTS psCategory (\n" +
@@ -124,6 +187,11 @@ function createTable(conn) {
         "exercise varchar(150),\n" +
         "PRIMARY KEY (ID)\n" +
         ");";
+
+    conn.query(sqlPsCategory, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela psCategory');
+    });
 
     /* CRIAR TABELA DE CONTRATOS DE RATEIO (CONSORCIO) */
     const sqlContratos = "CREATE TABLE IF NOT EXISTS contratosRateio(\n" +
@@ -136,6 +204,11 @@ function createTable(conn) {
         "PRIMARY KEY (ID)\n" +
         ");";
 
+    conn.query(sqlContratos, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela contratosRateio');
+    });
+
     /* CRIAR TABELA DE ATAS (CONSORCIO) */
     const sqlAtas = "CREATE TABLE IF NOT EXISTS atas(\n" +
         "ID int NOT NULL AUTO_INCREMENT,\n" +
@@ -146,6 +219,11 @@ function createTable(conn) {
         "description varchar(6000),\n" +
         "PRIMARY KEY (ID)\n" +
         ");";
+
+    conn.query(sqlAtas, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela atas');
+    });
 
     /* CRIAR TABELA DA TRANSPARÊNCIA (CONSORCIO)*/
     const sqlTransparencyConsorcio = "CREATE TABLE IF NOT EXISTS transparencyConsorcio (\n" +
@@ -160,6 +238,11 @@ function createTable(conn) {
         "section5 JSON,\n" +
         "PRIMARY KEY (ID)\n" +
         ");";
+
+    conn.query(sqlTransparencyConsorcio, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela transparencyConsorcio');
+    });
 
     /* CRIAR TABELA DE LICITAÇÕES (CONSORCIO) */
     const sqlLicitacoes = "CREATE TABLE IF NOT EXISTS licitacoes(\n" +
@@ -180,6 +263,11 @@ function createTable(conn) {
         "PRIMARY KEY (ID)\n" +
         ");";
 
+    conn.query(sqlLicitacoes, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela licitacoes');
+    });
+
     /* CRIAR TABELA DE ANDAMENTO LICITAÇÃO (CONSORCIO) */
     const sqlProgress = "CREATE TABLE IF NOT EXISTS progress(\n" +
         "ID int NOT NULL AUTO_INCREMENT,\n" +
@@ -192,6 +280,11 @@ function createTable(conn) {
         "PRIMARY KEY (ID)\n" +
         ");";
 
+    conn.query(sqlProgress, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela progress');
+    });
+
 
     /* CRIAR TABELA DE USUÁRIOS (CONSORCIO) */
     const sqlUsersConsorcio = "CREATE TABLE IF NOT EXISTS users_consorcio (\n" +
@@ -200,6 +293,11 @@ function createTable(conn) {
         "senha varchar(150),\n" +
         "PRIMARY KEY (ID)\n" +
         ");";
+
+    conn.query(sqlUsersConsorcio, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela users_consorcio');
+    });
 
     /* CRIAR TABELA DE CONFIGURAÇÕES (CONSORCIO) */
     const sqlConfiguracoes = "CREATE TABLE IF NOT EXISTS configuracoes(\n" +
@@ -211,43 +309,65 @@ function createTable(conn) {
         "PRIMARY KEY (ID)\n" +
         ");";
 
+    conn.query(sqlConfiguracoes, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela configuracoes');
+    });
+
     /* CRIAR TABELA DE LRF*/
     const sqlLrf = "CREATE TABLE IF NOT EXISTS lrf(\n" +
-    "ID int NOT NULL AUTO_INCREMENT,\n" +
-    "typeFile varchar(150),\n" +
-    "date varchar(50),\n" +
-    "exercise varchar(50),\n" +
-    "secretary varchar(150),\n" +
-    "competence varchar(150),\n" +
-    "file varchar(200),\n" +
-    "description varchar(5000),\n" +
-    "acronym varchar(20),\n" +
-    "PRIMARY KEY (ID)\n" +
-    ");";
+        "ID int NOT NULL AUTO_INCREMENT,\n" +
+        "typeFile varchar(150),\n" +
+        "date varchar(50),\n" +
+        "exercise varchar(50),\n" +
+        "secretary varchar(150),\n" +
+        "competence varchar(150),\n" +
+        "file varchar(200),\n" +
+        "description varchar(5000),\n" +
+        "acronym varchar(20),\n" +
+        "PRIMARY KEY (ID)\n" +
+        ");";
+
+    conn.query(sqlLrf, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela lrf');
+    });
+
+    /* CRIAR TABELA DE LEIS*/
+    const sqlLeis = "CREATE TABLE IF NOT EXISTS leis(\n" +
+        "ID int NOT NULL AUTO_INCREMENT,\n" +
+        "typeFile varchar(150),\n" +
+        "date varchar(50),\n" +
+        "exercise varchar(50),\n" +
+        "number int,\n" +
+        "file varchar(200),\n" +
+        "description varchar(5000),\n" +
+        "PRIMARY KEY (ID)\n" +
+        ");";
+
+    conn.query(sqlLeis, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela leis');
+    });
 
     /* CRIAR TABELA DE ARQUIVOS DE POLO*/
     const sqlArquivosPolo = "CREATE TABLE IF NOT EXISTS arquivos_polo(\n" +
-    "ID int NOT NULL AUTO_INCREMENT,\n" +
-    "typeFile varchar(150),\n" +
-    "title varchar(250),\n" +
-    "date varchar(50),\n" +
-    "exercise varchar(50),\n" +
-    "secretary varchar(150),\n" +
-    "competence varchar(150),\n" +
-    "file varchar(200),\n" +
-    "description varchar(5000),\n" +
-    "acronym varchar(20),\n" +
-    "PRIMARY KEY (ID)\n" +
-    ");";
+        "ID int NOT NULL AUTO_INCREMENT,\n" +
+        "typeFile varchar(150),\n" +
+        "title varchar(250),\n" +
+        "date varchar(50),\n" +
+        "exercise varchar(50),\n" +
+        "secretary varchar(150),\n" +
+        "competence varchar(150),\n" +
+        "file varchar(200),\n" +
+        "description varchar(5000),\n" +
+        "acronym varchar(20),\n" +
+        "PRIMARY KEY (ID)\n" +
+        ");";
 
-    const novaColunaLrf = "ALTER TABLE lrf ADD COLUMN acronym VARCHAR(20) AFTER description";
-    const novaColunaArquivos = "ALTER TABLE arquivos_polo ADD COLUMN title VARCHAR(250) AFTER typeFile";
-    const novaColunaPolos = "ALTER TABLE polos ADD COLUMN image VARCHAR(250) AFTER ID";
-
-
-    conn.query(sqlHome, function (error, results, fields) {
+    conn.query(sqlArquivosPolo, function (error, results, fields) {
         if (error) return console.log(error);
-        console.log('criou a tabela');
+        console.log('criou a tabela arquivos_polo');
         pool.end();
     });
 

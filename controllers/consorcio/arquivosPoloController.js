@@ -26,7 +26,7 @@ module.exports = {
         const exercise = dataForm.exercise || '';
         const secretary = dataForm.secretary || '';
         const competence = dataForm.competence || '';
-        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/arquivos_polo/${req.files[0]?.filename}` : '';
+        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio-residuos/uploads/arquivos_polo/${req.files[0]?.filename}` : '';
         const description = dataForm.description || '';
         const acronym = dataForm.acronym || '';
 
@@ -84,7 +84,7 @@ module.exports = {
         const exercise = dataForm.exercise || '';
         const secretary = dataForm.secretary || '';
         const competence = dataForm.competence || '';
-        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio/uploads/arquivos_polo/${req.files[0]?.filename}` : dataForm.file;
+        const file = req.files[0]?.filename ? `${process.env.BASE_URL}/api-consorcio-residuos/uploads/arquivos_polo/${req.files[0]?.filename}` : dataForm.file;
         const description = dataForm.description || '';
         const acronym = dataForm.acronym || '';
 
