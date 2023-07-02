@@ -365,10 +365,42 @@ function createTable(conn) {
         "PRIMARY KEY (ID)\n" +
         ");";
 
+
     conn.query(sqlArquivosPolo, function (error, results, fields) {
         if (error) return console.log(error);
         console.log('criou a tabela arquivos_polo');
-        pool.end();
     });
 
+    /* CRIAR TABELA DE ESTATUTO */
+    const sqlEstatuto = "CREATE TABLE IF NOT EXISTS estatuto(\n" +
+        "ID int NOT NULL AUTO_INCREMENT,\n" +
+        "title varchar(150),\n" +
+        "date varchar(50),\n" +
+        "exercise varchar(50),\n" +
+        "file varchar(200),\n" +
+        "description varchar(5000),\n" +
+        "PRIMARY KEY (ID)\n" +
+        ");";
+
+    conn.query(sqlEstatuto, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela estatuto');
+    });
+    
+    /* CRIAR TABELA DE PROTOCOLO DE INTENÇÕES */
+    const sqlProtocoloIntencoes = "CREATE TABLE IF NOT EXISTS protocolo_intencoes(\n" +
+        "ID int NOT NULL AUTO_INCREMENT,\n" +
+        "title varchar(150),\n" +
+        "date varchar(50),\n" +
+        "exercise varchar(50),\n" +
+        "file varchar(200),\n" +
+        "description varchar(5000),\n" +
+        "PRIMARY KEY (ID)\n" +
+        ");";
+
+    conn.query(sqlProtocoloIntencoes, function (error, results, fields) {
+        if (error) return console.log(error);
+        console.log('criou a tabela protocolo_intencoes');
+        pool.end();
+    });
 }

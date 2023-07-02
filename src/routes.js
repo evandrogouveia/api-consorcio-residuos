@@ -21,6 +21,8 @@ const lrfController = require('../controllers/lrf-contas-publicas/lrfController'
 const leisController = require('../controllers/lrf-contas-publicas/leisController');
 const configuracoesController = require('../controllers/configuracoes/configuracoesController');
 const arquivosPoloController = require('../controllers/consorcio/arquivosPoloController');
+const estatutoController = require('../controllers/institucional/estatutoController');
+const protocoloIntencoesController = require('../controllers/institucional/protocoloIntencoesController');
 const router = require('express').Router();
 
 router.get('/', (req, res) => res.json({ message: 'Funcionando!' }));
@@ -240,5 +242,25 @@ router.post('/new-configuracoes', configuracoesController.novaConfiguracao);
 router.get('/all-configuracoes', configuracoesController.getConfiguracoes);
 //atualiza dados da configurações
 router.patch('/update-configuracoes/:id', configuracoesController.updateConfiguracoes);
+
+/*--------------------------- (CONSORCIO) - ROTAS DE ESTATUTO ---------------------------*/
+//adiciona uma novo estatuto
+router.post('/new-estatuto',  multer(estatutoController).array('file'), estatutoController.newEstatuto);
+//obtem todas os estatutos
+router.get('/all-estatutos', estatutoController.getAllEstatuto);
+//atualiza o estatuto
+router.patch('/update-estatuto/:id', multer(estatutoController).array('file'), estatutoController.updateEstatuto);
+//deleta o estatuto
+router.delete('/delete-estatuto/:id', estatutoController.deleteEstatuto);
+
+/*--------------------------- (CONSORCIO) - ROTAS DE PROTOCOLO DE INTENÇÕES ---------------------------*/
+//adiciona uma novo protocolo
+router.post('/new-protocolo-intencoes',  multer(protocoloIntencoesController).array('file'), protocoloIntencoesController.newProtocoloIntencoes);
+//obtem todas os protocolos
+router.get('/all-protocolos-intencoes', protocoloIntencoesController.getAllProtocoloIntencoes);
+//atualiza o protocolo
+router.patch('/update-protocolo-intencoes/:id', multer(protocoloIntencoesController).array('file'), protocoloIntencoesController.updateProtocoloIntencoes);
+//deleta o protocolo
+router.delete('/delete-protocolo-intencoes/:id', protocoloIntencoesController.deleteProtocoloIntencoes);
 
 module.exports = router;
