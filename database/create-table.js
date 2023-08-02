@@ -401,6 +401,27 @@ function createTable(conn) {
     conn.query(sqlProtocoloIntencoes, function (error, results, fields) {
         if (error) return console.log(error);
         console.log('criou a tabela protocolo_intencoes');
-        pool.end();
     });
+
+      /* CRIAR TABELA DE FOOTER */
+      const sqlFooter = "CREATE TABLE IF NOT EXISTS footer(\n" +
+      "ID int NOT NULL AUTO_INCREMENT,\n" +
+      "logo varchar(300),\n" +
+      "endereco varchar(650),\n" +
+      "telefone varchar(50),\n" +
+      "email varchar(250),\n" +
+      "funcionamento varchar(300),\n" +
+      "link1 varchar(300),\n" +
+      "link2 varchar(300),\n" +
+      "link3 varchar(300),\n" +
+      "link4 varchar(300),\n" +
+      "copyright varchar(650),\n" +
+      "PRIMARY KEY (ID)\n" +
+      ");";
+
+  conn.query(sqlFooter, function (error, results, fields) {
+      if (error) return console.log(error);
+      console.log('criou a tabela footer');
+      pool.end();
+  });
 }

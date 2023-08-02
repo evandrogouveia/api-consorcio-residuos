@@ -23,6 +23,7 @@ const configuracoesController = require('../controllers/configuracoes/configurac
 const arquivosPoloController = require('../controllers/consorcio/arquivosPoloController');
 const estatutoController = require('../controllers/institucional/estatutoController');
 const protocoloIntencoesController = require('../controllers/institucional/protocoloIntencoesController');
+const footerController = require('../controllers/footer/footerController');
 const router = require('express').Router();
 
 router.get('/', (req, res) => res.json({ message: 'Funcionando!' }));
@@ -262,5 +263,14 @@ router.get('/all-protocolos-intencoes', protocoloIntencoesController.getAllProto
 router.patch('/update-protocolo-intencoes/:id', multer(protocoloIntencoesController).array('file'), protocoloIntencoesController.updateProtocoloIntencoes);
 //deleta o protocolo
 router.delete('/delete-protocolo-intencoes/:id', protocoloIntencoesController.deleteProtocoloIntencoes);
+
+/*--------------------------- ROTAS DO FOOTER ---------------------------*/
+//cadastra o footer
+router.post('/register-footer', multer(footerController).fields([{name: 'logo'}]), footerController.registerFooter);
+//obtem dados do footer
+router.get('/footer', footerController.getFooter);
+//atualiza o footer
+router.patch('/update-footer/:id', multer(footerController).fields([{name: 'logo'}]), footerController.updateFooter);
+
 
 module.exports = router;
